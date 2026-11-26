@@ -1,0 +1,59 @@
+/**
+ * @file
+ * The elements path bar under the editing area, in CKEditor's own colours
+ * and sizes.
+ */
+
+.ck.ck-elements-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.15em;
+  min-height: 1.9em;
+  padding: 0.15em 0.4em;
+  border: 1px solid var(--ck-color-base-border);
+  border-top: 0;
+  border-radius: 0 0 var(--ck-border-radius) var(--ck-border-radius);
+  background: var(--ck-color-toolbar-background);
+  color: var(--ck-color-text);
+  font-size: var(--ck-font-size-small);
+  line-height: 1.4;
+}
+
+.ck.ck-elements-path[hidden] {
+  display: none;
+}
+
+/* The editing area loses its rounded bottom corners above the bar. */
+.ck.ck-editor:has(> .ck-elements-path:not([hidden])) .ck-editor__main > .ck-editor__editable {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ck.ck-elements-path .ck-elements-path__item {
+  padding: 0.1em 0.35em;
+  cursor: pointer;
+  color: inherit;
+  border: 0;
+  border-radius: var(--ck-border-radius);
+  background: none;
+  font: inherit;
+}
+
+.ck.ck-elements-path .ck-elements-path__item:hover,
+.ck.ck-elements-path .ck-elements-path__item:focus-visible {
+  background: var(--ck-color-button-default-hover-background);
+}
+
+.ck.ck-elements-path .ck-elements-path__item:focus-visible {
+  outline: var(--ck-focus-ring);
+}
+
+.ck.ck-elements-path .ck-elements-path__item[aria-current] {
+  font-weight: bold;
+}
+
+.ck.ck-elements-path .ck-elements-path__separator {
+  opacity: 0.6;
+  color: var(--ck-color-text);
+}

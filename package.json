@@ -1,0 +1,46 @@
+{
+  "name": "ckeditor5-elements-path",
+  "version": "0.1.0",
+  "description": "CKEditor 4's Elements Path for Drupal's CKEditor 5: a bar under the editor listing the elements around the cursor; click one to select it.",
+  "keywords": [
+    "ckeditor5",
+    "ckeditor5-plugin",
+    "drupal",
+    "elements-path"
+  ],
+  "homepage": "https://github.com/heydon-consulting/ckeditor5-elements-path#readme",
+  "bugs": {
+    "url": "https://github.com/heydon-consulting/ckeditor5-elements-path/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heydon-consulting/ckeditor5-elements-path.git"
+  },
+  "license": "MIT",
+  "author": "Gordon Heydon",
+  "files": [
+    "build",
+    "css",
+    "icons",
+    "src"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --mode development --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "ckeditor5": ">=47.0.0 <48.0.0"
+  },
+  "peerDependenciesMeta": {
+    "ckeditor5": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "ckeditor5": "~47.6.2",
+    "terser-webpack-plugin": "^5.6.1",
+    "webpack": "^5.108.1",
+    "webpack-cli": "^6.0.1"
+  }
+}
