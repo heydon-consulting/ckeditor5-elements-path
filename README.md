@@ -35,7 +35,7 @@ so that `libraries/ckeditor5-elements-path/build/elementsPath.js` exists.
 
 | Path | |
 |---|---|
-| `build/elementsPath.js` | The plugin, built for Drupal: registered as `CKEditor5.elementsPath`, with `ckeditor5/src/*` from the CKEditor 5 DLL that Drupal core loads. |
+| `build/elementsPath.js` | The plugin, built for Drupal: registered as `CKEditor5.elementsPath`, with `ckeditor5/src/*` from the CKEditor 5 DLL that Drupal core loads. It starts with a docblock giving the package name and version. |
 | `css/elements-path.css` | The bar's styles, plain CSS using CKEditor's custom properties. |
 | `src/` | The source. |
 
