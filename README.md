@@ -60,6 +60,26 @@ The `ckeditor5` dev dependency should match the CKEditor 5 version Drupal core
 ships (`core/core.libraries.yml`, library `ckeditor5`), so the DLL lookups
 match. Rebuild when Drupal moves to a new major version of CKEditor 5.
 
+## Releasing
+
+The compiled `build/` is committed: GitHub's release downloads come from the
+repository, not npm. A release keeps it in step with the source:
+
+```sh
+npm version patch          # or minor / major: rebuilds, commits build/, tags v<version>
+npm publish --otp=<code>   # rebuilds and checks first
+git push --follow-tags
+```
+
+`npm publish` (its `prepublishOnly` script) rebuilds and refuses to publish
+unless the build matches what's committed, nothing is uncommitted, and the
+commit is tagged `v<version>`. On GitHub, the Build workflow fails when the
+committed `build/` doesn't match the source.
+
+The npm package also has `webpack.config.js`, so it can be rebuilt from `src/`
+against another CKEditor 5 version (`npm install ckeditor5@<version>` next to
+it, then `npx webpack`).
+
 ## License
 
 MIT
