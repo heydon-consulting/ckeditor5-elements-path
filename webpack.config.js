@@ -8,22 +8,30 @@
  * plugin is registered as CKEditor5.elementsPath, where Drupal looks for
  * `elementsPath.ElementsPath`.
  *
- * The build starts with a docblock naming the package and its version, from
- * package.json, added after minifying so Terser keeps it.
+ * The build starts with a docblock naming the package, its version and
+ * licence, from package.json, and the copyright line from LICENSE. It's added
+ * after minifying so Terser keeps it, and uses `/*!` so later minifiers do too.
  */
 
 const path = require('node:path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const fs = require('node:fs');
 const pkg = require('./package.json');
 
+const copyright = fs
+  .readFileSync(path.resolve(__dirname, 'LICENSE'), 'utf8')
+  .match(/^Copyright .+$/m)[0];
+
 const banner = [
-  '/**',
-  ` * ${pkg.name} ${pkg.version}`,
+  '/*!',
+  ` * ${pkg.name} v${pkg.version}`,
   ` * ${pkg.description}`,
   ' *',
-  ` * @see ${pkg.homepage}`,
-  ` * @license ${pkg.license}`,
+  ` * ${pkg.homepage}`,
+  ' *',
+  ` * ${copyright}`,
+  ` * Licensed under the ${pkg.license} License.`,
   ' */',
 ].join('\n');
 
