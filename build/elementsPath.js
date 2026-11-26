@@ -1,5 +1,5 @@
 /*!
- * ckeditor5-elements-path v0.1.0
+ * ckeditor5-elements-path v0.1.1
  * CKEditor 4's Elements Path for Drupal's CKEditor 5: a bar under the editor listing the elements around the cursor; click one to select it.
  *
  * https://github.com/heydon-consulting/ckeditor5-elements-path#readme
