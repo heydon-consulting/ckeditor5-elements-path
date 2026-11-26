@@ -3,13 +3,11 @@
  * A bar under the editing area listing the elements around the cursor.
  *
  * Like CKEditor 4's Elements Path: the outermost element comes first, and
- * clicking one selects it. The `elementsPath` toolbar button hides and shows
- * the bar.
+ * clicking one selects it. The bar is always shown, except while editing the
+ * source.
  */
 
 import { Plugin } from 'ckeditor5/src/core';
-import { ButtonView } from 'ckeditor5/src/ui';
-import icon from '../icons/elements-path.svg';
 
 /**
  * Whether a view element is editing-only markup, not part of the content.
@@ -39,8 +37,6 @@ export default class ElementsPath extends Plugin {
     // CKEditor's own translations (CKEDITOR_TRANSLATIONS), English without.
     const { t } = editor;
 
-    this.set('isVisible', true);
-
     this.bar = document.createElement('div');
     this.bar.className = 'ck ck-elements-path';
     this.bar.setAttribute('role', 'group');
@@ -65,20 +61,6 @@ export default class ElementsPath extends Plugin {
     // After every render of the editing view, so after each selection or
     // content change.
     this.listenTo(editor.editing.view, 'render', () => this.update());
-    this.on('change:isVisible', () => this.update());
-
-    editor.ui.componentFactory.add('elementsPath', (locale) => {
-      const button = new ButtonView(locale);
-      button.set({
-        label: locale.t('Elements path'), icon, tooltip: true, isToggleable: true,
-      });
-      button.bind('isOn').to(this, 'isVisible');
-      this.listenTo(button, 'execute', () => {
-        this.isVisible = !this.isVisible;
-        editor.editing.view.focus();
-      });
-      return button;
-    });
   }
 
   afterInit() {
@@ -113,7 +95,7 @@ export default class ElementsPath extends Plugin {
    */
   update() {
     const sourceEditing = this.editor.plugins.has('SourceEditing') && this.editor.plugins.get('SourceEditing');
-    const hidden = !this.isVisible || (sourceEditing && sourceEditing.isSourceEditingMode);
+    const hidden = Boolean(sourceEditing && sourceEditing.isSourceEditingMode);
     this.bar.hidden = hidden;
     this.elements = hidden ? [] : this.path();
 

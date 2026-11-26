@@ -11,8 +11,8 @@ Clicking one selects it.
   `<strong>bold <a>link</a></strong>` as
   `<strong>bold </strong><a><strong>link</strong></a>`, so the link's path is
   `p › a › strong`. Markup that only exists while editing is left out.
-- An `elementsPath` toolbar button hides and shows the bar, which also hides
-  while editing the source.
+- The bar is always shown, in every CKEditor 5 text format, except while
+  editing the source.
 
 This is the library. In Drupal it's used through the `ckeditor5_elements_path`
 module, which loads it from `/libraries/ckeditor5-elements-path/`.
@@ -20,8 +20,7 @@ module, which loads it from `/libraries/ckeditor5-elements-path/`.
 ## Installing in Drupal
 
 Put the package in the site's `libraries/ckeditor5-elements-path/`, then
-enable the module and add the **Elements path** button to a text format's
-toolbar.
+enable the module. The bar then shows in every CKEditor 5 text format.
 
 With Composer and [asset-packagist](https://asset-packagist.org):
 
@@ -38,7 +37,6 @@ so that `libraries/ckeditor5-elements-path/build/elementsPath.js` exists.
 |---|---|
 | `build/elementsPath.js` | The plugin, built for Drupal: registered as `CKEditor5.elementsPath`, with `ckeditor5/src/*` from the CKEditor 5 DLL that Drupal core loads. |
 | `css/elements-path.css` | The bar's styles, plain CSS using CKEditor's custom properties. |
-| `icons/elements-path.svg` | The toolbar button's icon. |
 | `src/` | The source. |
 
 The build uses Drupal's CKEditor 5 DLL, so it runs in Drupal, not in a

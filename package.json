@@ -21,7 +21,6 @@
   "files": [
     "build",
     "css",
-    "icons",
     "src"
   ],
   "scripts": {
