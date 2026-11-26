@@ -42,7 +42,14 @@ so that `libraries/ckeditor5-elements-path/build/elementsPath.js` exists.
 | `src/` | The source. |
 
 The build uses Drupal's CKEditor 5 DLL, so it runs in Drupal, not in a
-standalone CKEditor 5 app. It uses `Drupal.t()` for its labels.
+standalone CKEditor 5 app.
+
+## Translations
+
+The labels ("Elements path", "Select %0") use CKEditor's own translation,
+`editor.t()`, so they come from CKEditor's dictionaries
+(`window.CKEDITOR_TRANSLATIONS`), not Drupal's interface translation. Without
+a dictionary for the editor's language they're in English.
 
 ## Development
 

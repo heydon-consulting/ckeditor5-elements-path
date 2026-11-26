@@ -36,13 +36,15 @@ export default class ElementsPath extends Plugin {
 
   init() {
     const { editor } = this;
+    // CKEditor's own translations (CKEDITOR_TRANSLATIONS), English without.
+    const { t } = editor;
 
     this.set('isVisible', true);
 
     this.bar = document.createElement('div');
     this.bar.className = 'ck ck-elements-path';
     this.bar.setAttribute('role', 'group');
-    this.bar.setAttribute('aria-label', Drupal.t('Elements path'));
+    this.bar.setAttribute('aria-label', t('Elements path'));
 
     // The elements the bar's buttons stand for, by index.
     this.elements = [];
@@ -68,7 +70,7 @@ export default class ElementsPath extends Plugin {
     editor.ui.componentFactory.add('elementsPath', (locale) => {
       const button = new ButtonView(locale);
       button.set({
-        label: Drupal.t('Elements path'), icon, tooltip: true, isToggleable: true,
+        label: locale.t('Elements path'), icon, tooltip: true, isToggleable: true,
       });
       button.bind('isOn').to(this, 'isVisible');
       this.listenTo(button, 'execute', () => {
@@ -121,10 +123,9 @@ export default class ElementsPath extends Plugin {
       button.className = 'ck-elements-path__item';
       button.dataset.index = String(index);
       button.textContent = element.name;
-      // Plain text, so the name and classes aren't run through Drupal.t()'s
-      // HTML escaping: like a CSS selector, e.g. "mark.demo-marker".
+      // Like a CSS selector, e.g. "mark.demo-marker".
       const selector = [element.name, ...contentClasses(element)].join('.');
-      button.title = `${Drupal.t('Select')} ${selector}`;
+      button.title = this.editor.t('Select %0', [selector]);
       if (index === this.elements.length - 1) {
         button.setAttribute('aria-current', 'true');
       }
